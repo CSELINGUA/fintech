@@ -1,0 +1,49 @@
+server:
+  port: 9004
+
+spring:
+  application:
+    name: GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: ACCOUNT
+          uri: lb://ACCOUNT
+          predicates:
+            - Path=/account/**
+        - id: TRANSACTION
+          uri: lb://TRANSACTION
+          predicates:
+            - Path=/transaction/**
+        - id: NOTIFICATION
+          uri: lb://NOTIFICATION
+          predicates:
+            - Path=/notification/**
+        - id: EMAIL
+          uri: lb://EMAIL
+          predicates:
+            - Path=/mailer/**
+  datasource:
+    password:
+    url: jdbc:mysql://localhost:3306/notificationdb
+    username: root
+    jpa:
+      hibernate:
+        ddl-auto: create
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          format_sql: true
+        show_sql: true
+
+  main:
+    web-application-type: reactive
+
+eureka:
+  client:
+    register-with-client: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost

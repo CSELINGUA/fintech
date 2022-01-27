@@ -1,0 +1,31 @@
+server:
+  port: 9000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+
+jwt:
+  secret: reloadlyisgreat
+
+spring:
+  application:
+    name: TRANSACTION
+  datasource:
+    password:
+    url: jdbc:mysql://localhost:3306/transactiondb
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+      show_sql: true
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="notification" />
+        <module name="email-client" />
+        <module name="account" />
+        <module name="transaction" />
+        <module name="service-registry" />
+        <module name="cloud-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="rabbitmq" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="account" options="-parameters" />
+      <module name="cloud-gateway" options="-parameters" />
+      <module name="email-client" options="-parameters" />
+      <module name="notification" options="-parameters" />
+      <module name="rabbitmq" options="-parameters" />
+      <module name="service-registry" options="-parameters" />
+      <module name="transaction" options="-parameters" />
+    </option>
+  </component>
+</project>
