@@ -31,31 +31,18 @@ public class TransactionServiceImplementation implements TransactionService, Led
     @Autowired
     private LedgerDao ledgerDao;
 
-    private final String USERNAME = "admin";
-    private final String PASSWORD = "password";
-
 
     @Override
     public Transaction makeTransaction(Transaction transaction) {
-        Notification notification = Notification.builder()
-                .accountNumber(transaction.getAccountNumber())
-                .message(transaction.getMessage())
-                .email(transaction.getEmail())
-                .operation(transaction.getOperation())
-                .build();
+        Notification notification = new Notification();
+        notification.setAccountNumber(transaction.getAccountNumber());
+        notification.setEmail(transaction.getEmail());
+        notification.setMessage(transaction.getMessage());
+        notification.setOperation(transaction.getOperation());
 
         String urlNotification = "http://NOTIFICATION/notification/notify";
-//        String urlAccount = "http://ACCOUNT/account/clients/{accountNumber}";
-
-       /* Response response = new Response();
-        response = restTemplate.getForObject(urlAccount, Response.class, transaction.getAccountNumber());
-        if(response.toString().contains("accountNumber")) {
-            restTemplate.postForObject(urlNotification, notification, Response.class);
-            return transactionDao.save(transaction);
-        }
-        else
-            return null;*/
         restTemplate.postForObject(urlNotification, notification, Response.class);
+
         return transactionDao.save(transaction);
     }
 
@@ -93,6 +80,8 @@ public class TransactionServiceImplementation implements TransactionService, Led
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //Hardcoded login parameters
+        String USERNAME = "admin";
+        String PASSWORD = "password";
         return new User(USERNAME, PASSWORD, new ArrayList<>());
     }
 }

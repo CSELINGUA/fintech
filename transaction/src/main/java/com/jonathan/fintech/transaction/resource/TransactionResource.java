@@ -41,7 +41,6 @@ public class TransactionResource {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
     /**
      *
      * @param transaction
@@ -53,6 +52,8 @@ public class TransactionResource {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now( ))
+                        .statusCode(OK.value())
+                        .status(OK)
                         .data(of("Transaction Data: ",transactionService.makeTransaction(transaction)))
                         .message("Transaction operation")
                         .build()

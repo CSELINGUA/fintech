@@ -25,6 +25,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Autowired
     private JwtFilter jwtFilter;
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 

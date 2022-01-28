@@ -1,9 +1,11 @@
 package com.jonathan.fintech.transaction.filter;
 
+
 import com.jonathan.fintech.transaction.service.SecurityConfigurationService;
 import com.jonathan.fintech.transaction.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -51,6 +53,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
+
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }

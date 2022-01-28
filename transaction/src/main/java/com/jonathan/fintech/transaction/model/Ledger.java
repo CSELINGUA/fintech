@@ -19,7 +19,6 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
 public class Ledger {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -28,6 +27,4 @@ public class Ledger {
     private String operationType;
     private LocalDateTime dateAndTime;
     private String amount;
-
-
 }

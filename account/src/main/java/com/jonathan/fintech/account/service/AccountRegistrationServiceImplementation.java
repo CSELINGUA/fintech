@@ -61,18 +61,20 @@ public class AccountRegistrationServiceImplementation implements AccountRegistra
         Ledger ledger = new Ledger();
         ledger.setOperationType(StringUtility.ACCOUNT_CREATION);
         ledger.setActorAccountNumber(accountServiceUtility.getAccountNumber());
-        String token = accountServiceUtility.getToken();
 
+
+        Account account1 = accountRegistrationDao.save(account);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
+        String token = accountServiceUtility.getToken();
         if(token != null) {
             headers.set("Authorization", "Bearer " + token);
             HttpEntity<Ledger> entity = new HttpEntity<Ledger>(ledger, headers);
             String url = "http://TRANSACTION/transaction/ledger";
             log.info(restTemplate.exchange(url, HttpMethod.POST, entity, Response.class).toString());
         }
-        return null;// accountRegistrationDao.saveAndFlush(account);
+        return account1;
     }
 
     @Override

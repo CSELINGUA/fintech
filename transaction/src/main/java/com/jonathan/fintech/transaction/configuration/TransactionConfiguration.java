@@ -16,9 +16,6 @@ public class TransactionConfiguration {
         return new RestTemplate();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+
 
 }

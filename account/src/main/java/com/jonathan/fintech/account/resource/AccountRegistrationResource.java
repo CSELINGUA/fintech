@@ -48,6 +48,8 @@ public class AccountRegistrationResource {
                 Response.builder()
                         .timeStamp(now())
                         .data(of("Available accounts: ",accountRegistrationService.getAllAccounts()))
+                        .statusCode(OK.value())
+                        .status(OK)
                         .message("")
                         .developerMessage("")
                         .reason("")
