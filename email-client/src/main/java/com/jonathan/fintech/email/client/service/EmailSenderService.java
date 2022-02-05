@@ -13,7 +13,6 @@ public class EmailSenderService {
     private JavaMailSender javaMailSender;
 
     public Notification sendSimpleEmail(Notification notification){
-
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setSubject(notification.getOperation());
         simpleMailMessage.setText((notification.getMessage()) +"\nAccount Number: "+notification.getAccountNumber());

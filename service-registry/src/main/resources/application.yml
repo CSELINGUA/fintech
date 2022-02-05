@@ -1,5 +1,12 @@
 server:
-  port: 8761
+  port: 5000
+
+#logging:
+#  level:
+#    com:
+#      netflix:
+#        eureka: OFF
+#        discovery: OFF
 
 eureka:
   client:
@@ -10,14 +17,24 @@ spring:
   application:
     name: SERVICE
   datasource:
-    password:
-    url: jdbc:mysql://localhost:3306/accountdb
-    username: root
+    url: jdbc:h2:mem:fintechdb
+    usename: root
+    password: password
+    driver-class-name: org.h2.Driver
   jpa:
-    hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        format_sql: true
-      show_sql: true
+    spring:
+      jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+
+#  datasource:
+#    password: password
+#    url: jdbc:mysql://fintechdb.ccdo9omzcuea.us-east-1.rds.amazonaws.com:3306/accountdb
+#    username: root
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        format_sql: true
+#      show_sql: true
